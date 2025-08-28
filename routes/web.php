@@ -1,5 +1,7 @@
 <?php
 
+use App\Jobs\ProcessRefund;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,4 +17,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::get('/refund', function () {
+    Log::info('Dispatching refund');
+
+    ProcessRefund::dispatch();
+
+    Log::info('Refund dispatched');
 });
